@@ -3,7 +3,7 @@ TERMUX_PKG_DESCRIPTION="System header and library files from the Android NDK nee
 TERMUX_PKG_LICENSE="NCSA"
 TERMUX_PKG_MAINTAINER="@termux"
 TERMUX_PKG_VERSION=$TERMUX_NDK_VERSION
-TERMUX_PKG_REVISION=2
+TERMUX_PKG_REVISION=3
 TERMUX_PKG_SKIP_SRC_EXTRACT=true
 # This package has taken over <pty.h> from the previous libutil-dev
 # and iconv.h from libandroid-support-dev:
@@ -46,8 +46,8 @@ termux_step_extract_into_massagedir() {
 	cd $TERMUX_PKG_MASSAGEDIR/$TERMUX_PREFIX/lib
 	if [ $TERMUX_ARCH = "arm" ]; then
 		rm thumb -rf
-		cp $TERMUX_STANDALONE_TOOLCHAIN/sysroot/usr/lib/$TERMUX_HOST_PLATFORM/libunwind.a .
 	fi
+	cp $TERMUX_PKG_BUILDER_DIR/$TERMUX_ARCH/libunwind.a .
 
 	for lib in librt.so libpthread.so libutil.so; do
 		echo 'INPUT(-lc)' > $TERMUX_PKG_MASSAGEDIR/$TERMUX_PREFIX/lib/$lib

@@ -59,6 +59,7 @@ TERMUX_PKG_HAS_DEBUG=false
 termux_step_host_build() {
 	termux_setup_cmake
 	termux_setup_ninja
+	ls -l $TERMUX_PKG_BUILDER_DIR/../ndk-sysroot/$TERMUX_ARCH/libunwind.a
 
 	cmake -G Ninja -DLLVM_ENABLE_PROJECTS='clang;lldb' $TERMUX_PKG_SRCDIR/llvm
 	ninja -j $TERMUX_MAKE_PROCESSES clang-tblgen lldb-tblgen llvm-tblgen
